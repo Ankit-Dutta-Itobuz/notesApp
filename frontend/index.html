@@ -5,16 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>notes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
   </head>
-  <body class="bg-light">
-    <h1 class="text-center my-5">Keep Notes</h1>
+  <body>
+
+    <!-- Delete popUp -->
+
+    <div class="container row justify-content-center position-absolute popUp">
+      <div class="col-lg-4 col-md-8 col-sm-10 bg-light opacity-75">
+        <p class="my-5 text-center">Confirm Delete?</p>
+        <div class="row mb-5 justify-content-evenly">
+          <button class="col-lg-4 col-md-5 col-6" onclick="cancelDelete()">No</button>
+          <button class="col-lg-4 col-md-5 col-6" onclick="confirmDelete()">Yes</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Heading -->
+    <h1 class="text-center my-5 gradientVioletText largeText">Keep Notes</h1>
+
+    <!-- Input form -->
     <form action="" id="form" class="d-flex flex-column container-fluid row align-items-center">
-        <input type="text" placeholder="Enter Title" class="col-lg-6 col-md-8 my-5 text-center p-2 rounded-3" id="title">
-        <input type="text" placeholder="Enter Tasks" class="col-lg-6 col-md-8 mt-3 p-5 rounded-3" id="task">
-        <div id="msgErr" class="bg-danger col-lg-6 col-md-8 text-light"></div>
-        <input id="submit" type="submit" class="col-lg-1 col-md-2 col-4 mt-5 bg-success btn">
+        <input type="text" placeholder="Enter Title" class="col-lg-4 col-md-6 my-3 text-center p-2 borderDashed" id="title">
+        <textarea type="text" placeholder="Enter Tasks" class="col-lg-4 col-md-6 mt-3 p-5 borderDashed" id="task"></textarea>
+        <div id="msgErr" class="rounded col-lg-4 col-md-6 text-light my-1"></div>
+        <div class="col-8 d-flex justify-content-center ">
+          <input id="submit" type="submit" class="col-lg-2 col-md-3 col-sm-4 col-8 mt-5 greenBg">
+        </div>
     </form>
-    <ul id="taskContainer" class="container-fluid row mt-5 justify-content-evenly border gap-3">
+
+    <!-- Notes Section -->
+    <ul id="taskContainer" class="container-fluid row mt-5 justify-content-evenly gap-3">
 
         <!-- <li class="col-lg-3 col-md-4 col-sm-6 list-group text-center my-2 border p-1" id="taskBox">
             <div>a</div><div>a</div>
@@ -30,6 +51,17 @@
             <div class="buttonBox row justify-content-around">
               <a href="#" id="edit" class="btn btn-primary col-3">Edit</a>
               <a href="#" id="delete" class="btn btn-primary col-3">Delete</a>
+          </div>
+          </div>
+        </div> -->
+
+        <!-- <div class="card col-lg-3 col-md-4 col-sm-6 my-3 yellowBg">
+          <div class="card-body d-flex flex-column gap-3 justify-content-evenly align-items-evenly">
+            <h5 class="card-title" id="noteTitle">${json.data[i].title}</h5>
+            <p class="card-text" id="noteText">${json.data[i].text}</p>
+            <div class="buttonBox row justify-content-around">
+              <button href="#" id="edit" class=" col-xl-4 col-lg-5 col-5 violetBg">Edit</button>
+              <button href="#" id="delete" class="col-xl-4 col-lg-5 col-5 violetBg" onclick="deleteNote('${json.data[i]._id}')">Delete</button>
           </div>
           </div>
         </div> -->
