@@ -36,6 +36,10 @@ async function confirmDelete(){
     });
     getAllNotes();
     popUp.classList.remove('visible');
+    msgErr.classList.add('success');
+    msgErr.innerHTML = 'Successfully Deleted';
+    setTimeout(() => msgErr.innerHTML = '', 2000);
+    setTimeout(() => msgErr.classList.remove('success'), 2000);
 }
 
 function cancelDelete(){
