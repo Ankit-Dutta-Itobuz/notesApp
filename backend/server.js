@@ -3,8 +3,9 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from 'cors';
 import NotesData from './models/schema.js';
+import config from "./config.js";
 
-const port = 8080;
+const port = 8060;
 const app = express();
 
 //middleware important
@@ -65,6 +66,26 @@ app.put("/update/:id", (req, res) => {
     }
 });
 
+//get (by id)
+app.get("/note/:id", async(req, res) => {
+    try {
+        const data = await NotesData.findById(req.params.id);
+        if(data) {
+            res.status(200).send({
+                success: true,
+                message: "fetched successfully",
+                data,
+            })
+        }
+    } catch(err) {
+        res.status(400).send({
+            message: "failed to get",
+            success: false,
+            data: null,
+        });
+    }
+})
+
 //delete
 app.delete("/delete/:id", (req, res) => {
     try {
@@ -88,8 +109,7 @@ app.listen(port, () => {
 });
 
 //connecting to mongodb
-const link =
-    "mongodb+srv://ankit:dutta@cluster0.t6vx0ij.mongodb.net/?retryWrites=true&w=majority";
+const link = config.mongoUrl;
 
 async function mongoConnect() {
     await mongoose

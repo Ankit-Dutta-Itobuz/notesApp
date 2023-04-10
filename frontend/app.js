@@ -3,16 +3,17 @@ const title = document.querySelector('#title');
 const text = document.querySelector('#task');
 const submit = document.querySelector('#submit');
 const msgErr = document.querySelector('#msgErr');
-const taskContainer = document.querySelector('#taskContainer')
-const popUp = document.querySelector('.popUp')
+const taskContainer = document.querySelector('#taskContainer');
+const popUp = document.querySelector('.popUp');
+const updateVisibility = document.querySelector('#updateButton');
+
 
 let noteToBeDeleted = null;
-// let noteToBeUpdated = null;
 // const taskBox = document.querySelector('#taskBox');
 
 function getAllNotes() {
     taskContainer.innerHTML = '';
-    fetch("http://localhost:8080/getNotes")
+    fetch("http://localhost:8060/getNotes")
         .then((response) => response.json())
         .then((json) => {
             for (let i = 0; i < json.data.length; i++) {
@@ -22,35 +23,56 @@ function getAllNotes() {
                       <h5 class="card-title" id="noteTitle">${json.data[i].title}</h5>
                       <p class="card-text" id="noteText">${json.data[i].text}</p>
                       <div class="buttonBox row justify-content-around">
-                        <button href="#" id="edit" class=" col-xl-4 col-lg-5 col-5 violetBg" onclick="editNote('${json.data[i]._id}','${json.data[i].title}','${json.data[i].text}')">Edit</button>
+                        <button href="#" id="edit" class=" col-xl-4 col-lg-5 col-5 violetBg" onclick="editNote('${json.data[i]._id}')">Edit</button>
                         <button href="#" id="delete" class="col-xl-4 col-lg-5 col-5 violetBg" onclick="deleteNote('${json.data[i]._id}')">Delete</button>
                     </div>
                     </div>
                   </div>`
             }
         });
+    submit.classList.add('visible');
+}
+getAllNotes();
+
+async function editNote(id) {
+    await fetch(`http://localhost:8060/note/${id}`)
+        .then((response) => response.json())
+        .then((json) => {
+            document.getElementById('title').value = json.data.title;
+            document.getElementById('task').value = json.data.text;
+        })
+    document.getElementById('updateButton')
+        .setAttribute("onclick", `update('${id}')`);
+    updateVisibility.classList.add('visible');
+    submit.classList.remove('visible');
+    msgErr.classList.add('success');
+    msgErr.innerHTML = 'Start Editing';
+    setTimeout(() => msgErr.innerHTML = '', 2000);
+    setTimeout(() => msgErr.classList.remove('success'), 2000);
 }
 
-async function editNote(id){
-    await fetch(`http://localhost:8080/update/${id}`,{
-        method: "PUT",
-        body: JSON.stringify({
-            title: title.value,
-            text: text.value,
-        }),
-        headers: {
-            "Content-type": "application/json; charset=UTF-8",
-        },
-    });
-    title.value = title.value;
-    text.value = text.value;
-    getAllNotes();
-    title.value = '';
-    text.value = '';
+async function update(id) {
+    await fetch(`http://localhost:8060/update/${id}`,
+        {
+            method: "PUT",
+            headers: { "Content-type": "application/json; charset=UTF-8", },
+            body: JSON.stringify({
+                title: document.getElementById('title').value,
+                text: document.getElementById('task').value
+            }),
+        }).then((res) => {
+            getAllNotes();
+        })
+        .catch((err) => console.log(err));
+    updateVisibility.classList.remove('visible');
+    msgErr.classList.add('success');
+    msgErr.innerHTML = 'Successfully Updated';
+    setTimeout(() => msgErr.innerHTML = '', 2000);
+    setTimeout(() => msgErr.classList.remove('success'), 2000);
 }
 
-async function confirmDelete(){
-  const response =  await fetch(`http://localhost:8080/delete/${noteToBeDeleted}`, {
+async function confirmDelete() {
+    const response = await fetch(`http://localhost:8060/delete/${noteToBeDeleted}`, {
         method: "DELETE",
     });
     getAllNotes();
@@ -61,16 +83,16 @@ async function confirmDelete(){
     setTimeout(() => msgErr.classList.remove('success'), 2000);
 }
 
-function cancelDelete(){
+function cancelDelete() {
     popUp.classList.remove('visible');
 }
 
- function deleteNote(uniqueId) {
+function deleteNote(uniqueId) {
     noteToBeDeleted = uniqueId;
     popUp.classList.add('visible');
 }
 
-form.addEventListener('submit', onSubmit);
+submit.addEventListener('click', onSubmit);
 async function onSubmit(e) {
     e.preventDefault();
     if (title.value.trim() === '' || text.value.trim() === '') {
@@ -81,7 +103,7 @@ async function onSubmit(e) {
         // msgErr.classList.remove('fail');
     }
     else {
-        await fetch("http://localhost:8080/addNotes", {
+        await fetch("http://localhost:8060/addNotes", {
             method: "POST",
             body: JSON.stringify({
                 title: title.value,
@@ -104,6 +126,3 @@ async function onSubmit(e) {
     }
 }
 
-
-
-getAllNotes();

@@ -21,21 +21,33 @@
       </div>
     </div>
 
+    <!-- Update popUp -->
+    <!-- <div class="container row justify-content-center position-absolute popUp align-items-end">
+      <div class="col-lg-4 col-md-8 col-sm-10 bg-light border border-secondary rounded popUpContent">
+        <p class="my-5 text-center">Confirm Update?</p>
+        <div class="row mb-5 justify-content-evenly">
+          <button class="col-lg-4 col-md-5 col-6" onclick="cancelUpdate()">No</button>
+          <button class="col-lg-4 col-md-5 col-6" onclick="confirmUpdate()">Yes</button>
+        </div>
+      </div>
+    </div> -->
+
     <!-- Heading -->
     <h1 class="text-center my-5 gradientVioletText largeText">Keep Notes</h1>
 
     <!-- Input form -->
-    <form action="" id="form" class="d-flex flex-column container-fluid row align-items-center">
+    <div id="form" class="d-flex flex-column container-fluid row align-items-center pb-5">
         <input type="text" placeholder="Enter Title" class="col-lg-4 col-md-6 my-3 text-center p-2 borderDashed" id="title">
         <textarea type="text" placeholder="Enter Tasks" class="col-lg-4 col-md-6 mt-3 p-5 borderDashed" id="task"></textarea>
         <div id="msgErr" class="position-absolute col-lg-3 col-md-6 text-center py-3 my-1"></div>
         <div class="col-8 d-flex justify-content-center ">
-          <input id="submit" type="submit" class="col-lg-2 col-md-3 col-sm-4 col-8 mt-5 greenBg">
+          <button id="submit" class="col-lg-2 col-md-3 col-sm-4 col-8 mt-5 greenBg hidden position-absolute">submit</button>
+          <button id="updateButton" class="col-lg-2 col-md-3 col-sm-4 col-8 mt-5 greenBg hidden position-absolute" >update</button>
         </div>
-    </form>
+    </div>
 
     <!-- Notes Section -->
-    <ul id="taskContainer" class="container-fluid row mt-5 justify-content-evenly gap-3">
+    <ul id="taskContainer" class="container-fluid row mt-5 justify-content-evenly gap-3 pt-5">
     </ul>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

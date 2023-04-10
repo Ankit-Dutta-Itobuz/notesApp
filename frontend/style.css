@@ -45,10 +45,6 @@ body {
     border-style: dashed solid;
 }
 
-.visible {
-    visibility: visible;
-}
-
 .popUp {
     height: 60%;
     left: 13.2%;
@@ -85,3 +81,15 @@ body {
 #noteText::-webkit-scrollbar { 
     display: none; 
 }
+
+#submit {
+    top:43%;
+    visibility: collapse;
+}
+
+#updateButton {
+    top:43%;
+    visibility: collapse;
+}
+
+
