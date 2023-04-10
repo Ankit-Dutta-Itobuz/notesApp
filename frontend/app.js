@@ -7,6 +7,7 @@ const taskContainer = document.querySelector('#taskContainer')
 const popUp = document.querySelector('.popUp')
 
 let noteToBeDeleted = null;
+// let noteToBeUpdated = null;
 // const taskBox = document.querySelector('#taskBox');
 
 function getAllNotes() {
@@ -21,13 +22,31 @@ function getAllNotes() {
                       <h5 class="card-title" id="noteTitle">${json.data[i].title}</h5>
                       <p class="card-text" id="noteText">${json.data[i].text}</p>
                       <div class="buttonBox row justify-content-around">
-                        <button href="#" id="edit" class=" col-xl-4 col-lg-5 col-5 violetBg">Edit</button>
+                        <button href="#" id="edit" class=" col-xl-4 col-lg-5 col-5 violetBg" onclick="editNote('${json.data[i]._id}','${json.data[i].title}','${json.data[i].text}')">Edit</button>
                         <button href="#" id="delete" class="col-xl-4 col-lg-5 col-5 violetBg" onclick="deleteNote('${json.data[i]._id}')">Delete</button>
                     </div>
                     </div>
                   </div>`
             }
         });
+}
+
+async function editNote(id){
+    await fetch(`http://localhost:8080/update/${id}`,{
+        method: "PUT",
+        body: JSON.stringify({
+            title: title.value,
+            text: text.value,
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+        },
+    });
+    title.value = title.value;
+    text.value = text.value;
+    getAllNotes();
+    title.value = '';
+    text.value = '';
 }
 
 async function confirmDelete(){
@@ -84,4 +103,7 @@ async function onSubmit(e) {
         // msgErr.classList.remove('success');
     }
 }
+
+
+
 getAllNotes();

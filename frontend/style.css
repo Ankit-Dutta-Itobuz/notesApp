@@ -1,5 +1,5 @@
 
-  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,700&display=swap');
 
 
 body {
@@ -66,4 +66,22 @@ body {
     left: 0%;
     opacity: 0.55;
     color: #ffffff;
+}
+
+#taskContainer {
+    max-height: 80vh;
+    overflow-y: scroll;
+}
+
+#noteText {
+    max-height: 30vh;
+    overflow-y: scroll;
+}
+
+#taskContainer::-webkit-scrollbar { 
+    display: none; 
+}
+
+#noteText::-webkit-scrollbar { 
+    display: none; 
 }
