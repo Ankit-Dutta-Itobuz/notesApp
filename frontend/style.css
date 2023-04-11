@@ -48,7 +48,10 @@ body {
 }
 
 .popUp {
-    height: 60%;
+    position: absolute;
+    backdrop-filter: blur(10px);
+    height: 100%;
+    width: 75%;
     left: 13.2%;
     z-index: 1;
     visibility: collapse;
