@@ -89,4 +89,8 @@ body {
     visibility: collapse;
 }
 
-
+.buttonScale:hover {
+    transition: all 0.1s ease-in-out;
+    scale: 1.1;
+    cursor: pointer;
+}

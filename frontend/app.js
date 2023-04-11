@@ -23,10 +23,10 @@ function getAllNotes() {
                       <h5 class="card-title" id="noteTitle">${json.data[i].title}</h5>
                       <p class="card-text" id="noteText">${json.data[i].text}</p>
                       <div class="buttonBox row justify-content-around">
-                        <button href="#" id="edit" class=" col-xl-5 col-lg-6 col-6 violetBg" onclick="editNote('${json.data[i]._id}')"><div class="row justify-content-center">
+                        <button href="#" id="edit" class="buttonScale col-xl-5 col-lg-6 col-6 violetBg" onclick="editNote('${json.data[i]._id}')"><div class="row justify-content-center">
                         <img src="./images/edit-cover-1481-svgrepo-com.svg" class="col-6" alt="edit logo not found">
                       </div></button>
-                        <button href="#" id="delete" class="col-xl-5 col-lg-6 col-6 violetBg" onclick="deleteNote('${json.data[i]._id}')"><div class="row justify-content-center">
+                        <button href="#" id="delete" class="buttonScale col-xl-5 col-lg-6 col-6 violetBg" onclick="deleteNote('${json.data[i]._id}')"><div class="row justify-content-center">
                         <img src="./images/square-delete-svgrepo-com.svg" class="col-6" alt="delete logo not found">
                       </div></button>
                     </div>
