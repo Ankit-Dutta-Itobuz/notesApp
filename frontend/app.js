@@ -18,13 +18,17 @@ function getAllNotes() {
         .then((json) => {
             for (let i = 0; i < json.data.length; i++) {
                 taskContainer.innerHTML +=
-                    `<div class="card col-lg-3 col-md-4 col-sm-6 my-3 yellowBg">
+                    `<div class="card col-xl-3 col-lg-4 col-md-6 col-8 my-auto yellowBg">
                     <div class="card-body d-flex flex-column gap-3 justify-content-evenly align-items-evenly">
                       <h5 class="card-title" id="noteTitle">${json.data[i].title}</h5>
                       <p class="card-text" id="noteText">${json.data[i].text}</p>
                       <div class="buttonBox row justify-content-around">
-                        <button href="#" id="edit" class=" col-xl-4 col-lg-5 col-5 violetBg" onclick="editNote('${json.data[i]._id}')">Edit</button>
-                        <button href="#" id="delete" class="col-xl-4 col-lg-5 col-5 violetBg" onclick="deleteNote('${json.data[i]._id}')">Delete</button>
+                        <button href="#" id="edit" class=" col-xl-5 col-lg-6 col-6 violetBg" onclick="editNote('${json.data[i]._id}')"><div class="row justify-content-center">
+                        <img src="./images/edit-cover-1481-svgrepo-com.svg" class="col-6" alt="edit logo not found">
+                      </div></button>
+                        <button href="#" id="delete" class="col-xl-5 col-lg-6 col-6 violetBg" onclick="deleteNote('${json.data[i]._id}')"><div class="row justify-content-center">
+                        <img src="./images/square-delete-svgrepo-com.svg" class="col-6" alt="delete logo not found">
+                      </div></button>
                     </div>
                     </div>
                   </div>`
@@ -47,8 +51,7 @@ async function editNote(id) {
     submit.classList.remove('visible');
     msgErr.classList.add('success');
     msgErr.innerHTML = 'Start Editing';
-    setTimeout(() => msgErr.innerHTML = '', 2000);
-    setTimeout(() => msgErr.classList.remove('success'), 2000);
+    setTimeout(() =>{ msgErr.classList.remove('success');msgErr.innerHTML = '';}, 2000);
 }
 
 async function update(id) {
@@ -64,11 +67,13 @@ async function update(id) {
             getAllNotes();
         })
         .catch((err) => console.log(err));
+    document.getElementById('title').value = '';
+    document.getElementById('task').value = '';
     updateVisibility.classList.remove('visible');
     msgErr.classList.add('success');
     msgErr.innerHTML = 'Successfully Updated';
-    setTimeout(() => msgErr.innerHTML = '', 2000);
-    setTimeout(() => msgErr.classList.remove('success'), 2000);
+    // setTimeout(() => msgErr.innerHTML = '', 2000);
+    setTimeout(() =>{ msgErr.classList.remove('success');msgErr.innerHTML = '';}, 2000);
 }
 
 async function confirmDelete() {
@@ -79,8 +84,7 @@ async function confirmDelete() {
     popUp.classList.remove('visible');
     msgErr.classList.add('success');
     msgErr.innerHTML = 'Successfully Deleted';
-    setTimeout(() => msgErr.innerHTML = '', 2000);
-    setTimeout(() => msgErr.classList.remove('success'), 2000);
+    setTimeout(() =>{ msgErr.classList.remove('success');msgErr.innerHTML = '';}, 2000);
 }
 
 function cancelDelete() {
@@ -98,8 +102,7 @@ async function onSubmit(e) {
     if (title.value.trim() === '' || text.value.trim() === '') {
         msgErr.classList.add('fail');
         msgErr.innerHTML = 'Please enter all fields';
-        setTimeout(() => msgErr.innerHTML = '', 2000);
-        setTimeout(() => msgErr.classList.remove('fail'), 2000);
+        setTimeout(() =>{ msgErr.classList.remove('fail');msgErr.innerHTML = '';}, 2000);
         // msgErr.classList.remove('fail');
     }
     else {
@@ -120,8 +123,7 @@ async function onSubmit(e) {
         task.value = '';
         msgErr.classList.add('success');
         msgErr.innerHTML = 'Successfully added';
-        setTimeout(() => msgErr.innerHTML = '', 2000);
-        setTimeout(() => msgErr.classList.remove('success'), 2000);
+        setTimeout(() =>{ msgErr.classList.remove('success');msgErr.innerHTML = '';}, 2000);
         // msgErr.classList.remove('success');
     }
 }

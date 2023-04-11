@@ -4,17 +4,19 @@
 
 body {
     font-family: 'Press Start 2P', cursive;
+    /* background-color: black; */
+    overflow-x: hidden;
     background-image: url('./images/spaceBg.webp');
 }
 
 .success {
     background-color: #00FF38;
-    opacity: 0.8;
+    /* color: #00FF38; */
 }
 
 .fail {
     background-color: rgb(255, 0, 0);
-    opacity: 0.8;
+   /* color: #CF0000; */
 }
 
 .yellowBg {
@@ -56,16 +58,8 @@ body {
     height: 200px;
 }
 
-#msgErr {
-    z-index: 1;
-    top: 19%;
-    left: 0%;
-    opacity: 0.55;
-    color: #ffffff;
-}
-
 #taskContainer {
-    max-height: 80vh;
+    max-height: 50vh;
     overflow-y: scroll;
 }
 
@@ -83,12 +77,12 @@ body {
 }
 
 #submit {
-    top:43%;
+    bottom: 0%;
     visibility: collapse;
 }
 
 #updateButton {
-    top:43%;
+    bottom: 0%;
     visibility: collapse;
 }
 
